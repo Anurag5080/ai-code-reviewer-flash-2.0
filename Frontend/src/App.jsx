@@ -15,7 +15,6 @@ function App() {
 
   useEffect(() => {
     prism.highlightAll()
-
   }, [])
 
   async function reviewCode() {
