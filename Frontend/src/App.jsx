@@ -13,18 +13,33 @@ function App() {
   return 1+1}`)
   const [review, setReview] = useState(``)
 
+  const [loader, setLoader] = useState(false);
+
   useEffect(() => {
     prism.highlightAll()
   }, [])
 
   async function reviewCode() {
-    const response = await axios.post('https://ai-code-reviewer-flash-2-0.onrender.com/ai/get-review', { code });
-    setReview(response.data);
+    setLoader(true);
+
+    try {
+      const response = await axios.post('https://ai-code-reviewer-flash-2-0.onrender.com/ai/get-review',{ code });
+      setReview(response.data);
+    } 
+    catch (error) {
+      console.error('Error fetching review:', error);
+      setReview('❌ Error fetching review.');
+    }
+
+    setLoader(false);
   }
+
 
   return (
     <>
       <div className="main">
+        {loader && (<div className="loader"></div>)}
+        <div onClick={reviewCode} className="review button">Review</div>
         <div className="left">
           <div className="code">
             <Editor
@@ -42,7 +57,7 @@ function App() {
               }}
             />
           </div>
-          <div onClick={reviewCode} className="review">Review</div>
+          
         </div>
         <div className="right">
           <Markdown rehypePlugins={[ rehypeHighlight ]} >{review}</Markdown>

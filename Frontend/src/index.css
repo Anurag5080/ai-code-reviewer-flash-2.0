@@ -35,23 +35,72 @@ h1 {
   line-height: 1.1;
 }
 
-button {
+.button {
+  z-index: 1000;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 1px solid red;
   padding: 0.6em 1.2em;
-  font-size: 1em;
+  font-size: 1.5em;
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: 
+    transform 0.3s ease,
+    font-size 0.3s ease,
+    box-shadow 0.3s ease,
+    background-color 0.3s ease;
+  user-select: none;
+  box-shadow: 0px -5px 15px red;
+  color: white;
 }
-button:hover {
-  border-color: #646cff;
+
+.button:hover {
+  font-size: 1.7em;
+  transform: scale(1.05);
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 0px 15px red;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+.button:active {
+  transform: scale(0.95);
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 0px 10px red inset;
+  background-color: #2a2a2a;
+}
+
+
+.loader {
+  z-index: 1000;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  top: 40%;
+  left: 47%;
+  width: 60px;
+  height: 60px;
+  border: 6px solid #1a1a1a; /* black outer */
+  border-top: 6px solid red; /* spinning red */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.7), 0 0 30px rgba(255, 255, 255, 0.4);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.7), 0 0 30px rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.7), 0 0 40px rgba(255, 0, 0, 0.6);
+  }
+  100% {
+    transform: rotate(360deg);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.7), 0 0 30px rgba(255, 255, 255, 0.4);
+  }
 }
 
 @media (prefers-color-scheme: light) {
@@ -66,3 +115,4 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
