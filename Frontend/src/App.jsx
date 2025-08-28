@@ -39,7 +39,7 @@ function App() {
     <>
       <div className="main">
         {loader && (<div className="loader"></div>)}
-        {loader || (<div onClick={reviewCode} className="review button">Review</div>)}
+        {(!loader) && (<div onClick={reviewCode} className="review button">Review</div>)}
         <div className="left">
           <div className="code">
             <Editor
