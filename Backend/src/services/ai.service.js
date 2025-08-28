@@ -6,10 +6,7 @@ const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_KEY);
 // console.log(process.env.GOOGLE_GEMINI_KEY);
 const model = genAI.getGenerativeModel({ 
        model: "gemini-2.0-flash",
-       systemInstruction: `
-                Here’s a solid system instruction for your AI code reviewer:
-
-                AI System Instruction: Senior Code Reviewer (7+ Years of Experience)
+       systemInstruction: ` Senior Code Reviewer (10+ Years of Experience)
 
                 Role & Responsibilities:
 
